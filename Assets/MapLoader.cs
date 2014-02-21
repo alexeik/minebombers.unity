@@ -3,6 +3,7 @@ using System.Collections;
 using System.IO;
 using AssemblyCSharp;
 using System;
+using Enums;
 
 public class MapLoader
 {
@@ -270,9 +271,6 @@ public class MapLoader
     public void LoadVisualLevel()
     {
        GameObject prefab = (GameObject)Resources.Load ("Prefabs/Square");
-        /*Sprite sp1 = Resources.Load<UnityEngine.Sprite> ("map/mb_ground");
-        Sprite sp2 = Resources.Load<UnityEngine.Sprite> ("map/mb_beton");
-        prefab.GetComponent<SpriteRenderer>().sprite =sp1;*/
 
         for (int i = 0; i <= GameController.MaxX; i += 10)
         {
@@ -305,6 +303,30 @@ public class MapLoader
             }
 
         }
+
+        //устанавливаем декорации у земли и pupi(так как под pupi всегда земля, то в одном блоке все происходит.
+
+        {
+            for (int i = 0; i <= GameController.MaxX; i += 10)
+            {
+
+                for (int y = 0; y <= GameController.MaxY; y += 10)
+                {
+
+                    if ((GameController.board[i / 10, y / 10] != null))
+                    {
+                        if (GameController.board[i / 10, y / 10].Current is Ground)
+                        {
+                            GameController.board[i / 10, y / 10].PreUpdateDecals(WhoIs.Ground);
+                        }
+                    }
+
+
+                }
+
+            }
+        }
+
     }
 
 }

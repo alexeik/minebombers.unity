@@ -4,10 +4,10 @@ using Enums;
 
 public interface IDecal
 {
-	Object LeftImage { get; set; }
-	Object RightImage { get; set; }
-	Object UpImage { get; set; }
-	Object DownImage { get; set; }
+	GameObject LeftImage { get; set; }
+    GameObject RightImage { get; set; }
+    GameObject UpImage { get; set; }
+    GameObject DownImage { get; set; }
 	void UpdateSide(Side s, int x, int y);
 	void Update(int x, int y, Side side, WhoIs who);
 	void Remove(int x, int y, Side side, WhoIs who);

@@ -18,7 +18,7 @@ namespace AssemblyCSharp
     {
         public string Code;
         public ISquareDiv m_Current;
-        private static GameObject _Prefab = null;
+        private GameObject _Prefab = null;
 		static public Ground GroundCache;
 		private WhoIs Who;
 
@@ -119,20 +119,34 @@ namespace AssemblyCSharp
 		{
 			//обновляеми следующую ячейка по ходу движения
 			//DONE: сделать роутер для разного направления движения. вообще то не надо. так как это определяется что плеер разрушает.
+            float debugx = 0;
+            debugx = GetX();
+            float debugy = 0;
+            debugy = GetY();
+            if (debugx == 1.4f && debugy == -0.4f)
+            {
+                Debug.DebugBreak();
+            }
+
+
 			int x1 = 0;
 			int y1 = 0;
-			x1 = (GetX() / 10) + 1;
-			y1 = (GetY() / 10);
-			UpdateDecalSub(x1, y1, Side.Left, Who);
-			x1 = (GetX() / 10) - 1;
-			y1 = (GetY() / 10);
+            //все смещения ниже, указывают на соседние ячейки относительно ячейки типа Ground в getx и gety координаты ячейки ground
+            float t;
+            t=debugx * 10f;
+            t = t - 1;
+            x1 = (int)(t);
+            y1 = Convert.ToInt32(-debugy * 10f);
 			UpdateDecalSub(x1, y1, Side.Right, Who);
-			x1 = (GetX() / 10);
-			y1 = (GetY() / 10) + 1;
-			UpdateDecalSub(x1, y1, Side.Down, Who);
-			x1 = (GetX() / 10);
-			y1 = (GetY() / 10) - 1;
+            x1 = Convert.ToInt32(debugx * 10 + 1);
+            y1 = Convert.ToInt32(-debugy * 10);
+			UpdateDecalSub(x1, y1, Side.Left, Who);
+            x1 = Convert.ToInt32(debugx * 10);
+            y1 = Convert.ToInt32(-debugy * 10 - 1);
 			UpdateDecalSub(x1, y1, Side.Up, Who);
+            x1 = Convert.ToInt32(debugx * 10);
+            y1 = Convert.ToInt32(-debugy * 10 + 1);
+			UpdateDecalSub(x1, y1, Side.Down, Who);
 			
 			
 		}
@@ -177,8 +191,8 @@ namespace AssemblyCSharp
 			//убираем декорации с разрушенной ячейки
 			int x1 = 0;
 			int y1 = 0;
-			x1 = (GetX() / 10);
-			y1 = (GetY() / 10);
+            x1 = (int)(GetX() / 10);
+            y1 = (int)(GetY() / 10);
 			RemoveDecalSub(x1, y1, Side.Left, Who);
 					
 		}
@@ -194,13 +208,13 @@ namespace AssemblyCSharp
 				
 			}
 		}
-		private int GetX()
+		private float GetX()
 		{
-			return (int)Prefab.transform.position.x;// Canvas.GetLeft(Image);
+			return Prefab.transform.position.x;// Canvas.GetLeft(Image);
 		}
-		private int GetY()
+        private float GetY()
 		{
-            return (int)Prefab.transform.position.y;//Canvas.GetTop(Image);
+            return Prefab.transform.position.y;//Canvas.GetTop(Image);
 		}
     }
 

@@ -9,210 +9,333 @@
 //------------------------------------------------------------------------------
 using System;
 using Enums;
+using UnityEngine;
+using Assets.cls;
 
 
 namespace AssemblyCSharp
 {
-	public class SandDecal : IDecal
-	{
-		public UnityEngine.Object DownImage { get; set; }
-		public UnityEngine.Object LeftImage { get; set; }
-		public UnityEngine.Object RightImage { get; set; }
-		public UnityEngine.Object UpImage { get; set; }
-		public DecalType CurrentType { get; set; }
-		
-		public SandDecal(int x, int y)
-		{
-			DownImage = new UnityEngine.Object();
-			LeftImage = new UnityEngine.Object();
-			RightImage = new UnityEngine.Object();
-			UpImage = new UnityEngine.Object();
-			SandAdd(x, y);
-		}
-		public virtual void SetUpImagesSand()
-		{
-			//песок копание
-			
-			
-			
-			
-		}
-		public virtual void SetUpImagesSandBlack()
-		{
-			//песок взрыв
-			
-			
-			
-			
-		}
-		
-		public virtual void SetUpImagesRock()
-		{
-			
-			
-			
-		}
-		
-		public virtual void SetUpImagesRockBlack()
-		{
-			
-			
-			
-		}
-		
-		
-		public void Remove(int x, int y, Side s, WhoIs who)
-		{
-			//DONE: удаляет с канваса все images.     Вызывается когда какой то объект разрушен.
-			
+    public class SandDecal : IDecal
+    {
+        public static GameObject prefab = (GameObject)Resources.Load("Prefabs/Decal");
+        public GameObject DownImage { get; set; }
+        public GameObject LeftImage { get; set; }
+        public GameObject RightImage { get; set; }
+        public GameObject UpImage { get; set; }
+        public DecalType CurrentType { get; set; }
+        private int x;
+        private int y;
+        public SandDecal(int _x, int _y)
+        {
+
+
+            x = _x;
+            y = _y;
+
+
+
+
+
+        }
+        public virtual void SetUpImagesSand()
+        {
+            //песок копание
+
+
+
+
+        }
+        public virtual void SetUpImagesSandBlack()
+        {
+            //песок взрыв
+
+
+
+
+        }
+
+        public virtual void SetUpImagesRock()
+        {
+
+
+
+        }
+
+        public virtual void SetUpImagesRockBlack()
+        {
+
+
+
+        }
+
+
+        public void Remove(int x, int y, Side s, WhoIs who)
+        {
+            //DONE: удаляет с канваса все images.     Вызывается когда какой то объект разрушен.
+
             //PoleG.Children.Remove(DownImage); 
             //PoleG.Children.Remove(LeftImage);
             //PoleG.Children.Remove(RightImage);
             //PoleG.Children.Remove(UpImage);
-			return;
-			
-			
-		}
-		
-		/// <summary>
-		/// Метод вызывается для каждой стороны для каждой декорации.
-		/// </summary>
-		/// <param name="x"></param>
-		/// <param name="y"></param>
-		/// <param name="s"></param>
-		/// <param name="who"></param>
-		/// <remarks></remarks>
-		public void Update(int x, int y, Side s, WhoIs who)
-		{
-			//DONE: обновление источников четырех сторон. то есть сюда приходит запрос из источника, и происходит
-			//обновление нужной стороны под нужный источник события.
-			
-			//сделана зависимость для отмены рисования 
-			if (GameController.board[x, y ].m_Current is Ground) {
-				return;
-			}
-			if (GameController.board[x, y ].m_Current is Beton) {
-				return;
-			}
-			//DONE: сделать зависимость декорации от земли где она применяется. для камня это свои картинки, для песка свои. сча любой тип это песок.
-			//DONE: сделать зависимость декорации от бомбы.
-			if (GameController.board[x, y ].m_Current is Rock) {
-				CurrentType = DecalType.Rock;
-				PrepareSources(who, s);
-				
-			}
-			if (GameController.board[x, y ].m_Current is Sand) {
-				CurrentType = DecalType.Sand;
-				PrepareSources(who, s);
-			}
-			
-			
-			//UpdateSide(s, x, y)
-			
-		}
-		public void PrepareSources(WhoIs w, Side s)
-		{
-            //switch (CurrentType) {
-            //case DecalType.Rock & w == WhoIs.Bomb:
-            //    switch (s) {
-            //    case Side.Down:
-            //        DownImage.Source = ResCache.Brick(18, 4);
+            return;
+
+
+        }
+
+        /// <summary>
+        /// Метод вызывается для каждой стороны для каждой декорации.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="s"></param>
+        /// <param name="who"></param>
+        /// <remarks></remarks>
+        public void Update(int x, int y, Side s, WhoIs who)
+        {
+            //DONE: обновление источников четырех сторон. то есть сюда приходит запрос из источника, и происходит
+            //обновление нужной стороны под нужный источник события.
+
+            //сделана зависимость для отмены рисования 
+            if (GameController.board[x, y].m_Current is Ground)
+            {
+                return;
+            }
+            if (GameController.board[x, y].m_Current is Beton)
+            {
+                return;
+            }
+            //DONE: сделать зависимость декорации от земли где она применяется. для камня это свои картинки, для песка свои. сча любой тип это песок.
+            //DONE: сделать зависимость декорации от бомбы.
+            if (GameController.board[x, y].m_Current is Rock)
+            {
+                CurrentType = DecalType.Rock;
+                PrepareSources(who, s);
+
+            }
+            if (GameController.board[x, y].m_Current is Sand)
+            {
+                CurrentType = DecalType.Sand;
+                PrepareSources(who, s);
+            }
+
+
+            //UpdateSide(s, x, y)
+
+        }
+        public void PrepareSources(WhoIs w, Side s)
+        {
+            if (CurrentType == DecalType.Rock && w == WhoIs.Ground)
+            {
+                Vector3 v3 = new Vector3();
+                switch (s)
+                {
+                    //x и -y указывают на ячейку Sand левый верхний угол
+                    case Side.Down:
+
+                        //rght h=hor t=top
+
+                        v3.x = (float)x / 10;
+                        v3.y = (float)-y / 10;
+                        v3.z = 0;
+                        DownImage = (GameObject)MonoBehaviour.Instantiate(prefab, v3, Quaternion.identity);
+                        DownImage.name = x + "_" + y + "DecalDownImage_";
+                        DownImage.GetComponent<SpriteRenderer>().sprite = StaticSpriteCache.sprites[29];
+                        DownImage.GetComponent<SpriteRenderer>().sortingOrder = 1;
+
+                        break;
+                    case Side.Left:
+                        //rgvl v=vert l=left
+                        v3.x = (float)x / 10;
+                        v3.y = (float)-y / 10;
+                        v3.z = 0;
+                        LeftImage = (GameObject)MonoBehaviour.Instantiate(prefab, v3, Quaternion.identity);
+                        LeftImage.name = x + "_" + y + "DecalLeftImage_";
+
+                        LeftImage.GetComponent<SpriteRenderer>().sprite = StaticSpriteCache.sprites[37];
+                        LeftImage.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                        break;
+                    case Side.Right:
+                        //rgvr
+                        v3.x = (float)x / 10 + 0.06f;
+                        v3.y = (float)-y / 10;
+                        v3.z = 0;
+                        RightImage = (GameObject)MonoBehaviour.Instantiate(prefab, v3, Quaternion.identity);
+                        RightImage.name = x + "_" + y + "DecalRightImage_";
+                        RightImage.GetComponent<SpriteRenderer>().sprite = StaticSpriteCache.sprites[28];
+                        RightImage.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                        break;
+                    case Side.Up:
+                        //rghd
+                        v3.x = (float)x / 10;
+                        v3.y = (float)-y / 10 - 0.07f;
+                        v3.z = 0;
+                        UpImage = (GameObject)MonoBehaviour.Instantiate(prefab, v3, Quaternion.identity);
+                        UpImage.name = x + "_" + y + "DecalUpImage_";
+                        UpImage.GetComponent<SpriteRenderer>().sprite = StaticSpriteCache.sprites[34];
+                        UpImage.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                        break;
+
+                }
+            }
+            if (CurrentType == DecalType.Sand && w == WhoIs.Ground)
+            {
+                Vector3 v3 = new Vector3();
+                switch (s)
+                {
+                        //x и -y указывают на ячейку Sand левый верхний угол
+                    case Side.Down:
+                       
+                        //gght h=hor t=top
+
+                        v3.x = (float)x / 10;
+                        v3.y = (float)-y / 10;
+                        v3.z = 0;
+                        DownImage = (GameObject)MonoBehaviour.Instantiate(prefab, v3, Quaternion.identity);
+                        DownImage.name = x + "_" + y + "DecalDownImage_";
+                        DownImage.GetComponent<SpriteRenderer>().sprite = StaticSpriteCache.sprites[36];
+                        DownImage.GetComponent<SpriteRenderer>().sortingOrder = 1;
+
+                        break;
+                    case Side.Left:
+                        //ggvl v=vert l=left
+                        v3.x = (float)x / 10;
+                        v3.y = (float)-y / 10;
+                        v3.z = 0;
+                        LeftImage = (GameObject)MonoBehaviour.Instantiate(prefab, v3, Quaternion.identity);
+                        LeftImage.name = x + "_" + y + "DecalLeftImage_";
+
+                        LeftImage.GetComponent<SpriteRenderer>().sprite = StaticSpriteCache.sprites[35];
+                        LeftImage.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                        break;
+                    case Side.Right:
+                        //ggvr
+                        v3.x = (float)x / 10 + 0.06f;
+                        v3.y = (float)-y / 10;
+                        v3.z = 0;
+                        RightImage = (GameObject)MonoBehaviour.Instantiate(prefab, v3, Quaternion.identity);
+                        RightImage.name = x + "_" + y + "DecalRightImage_";
+                        RightImage.GetComponent<SpriteRenderer>().sprite = StaticSpriteCache.sprites[25];
+                        RightImage.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                        break;
+                    case Side.Up:
+                        //gghd
+                        v3.x = (float)x / 10;
+                        v3.y = (float)-y / 10 -0.07f;
+                        v3.z = 0;
+                        UpImage = (GameObject)MonoBehaviour.Instantiate(prefab, v3, Quaternion.identity);
+                        UpImage.name = x + "_" + y + "DecalUpImage_";
+                        UpImage.GetComponent<SpriteRenderer>().sprite = StaticSpriteCache.sprites[26];
+                        UpImage.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                        break;
+
+                }
+            }
+            //switch (CurrentType)
+            //{
+            //    case DecalType.Rock & w == WhoIs.Bomb:
+            //        switch (s)
+            //        {
+            //            case Side.Down:
+            //                DownImage.Source = ResCache.Brick(18, 4);
+            //                break;
+            //            case Side.Left:
+            //                LeftImage.Source = ResCache.Brick(18, 5);
+            //                break;
+            //            case Side.Right:
+            //                RightImage.Source = ResCache.Brick(18, 6);
+            //                break;
+            //            case Side.Up:
+            //                UpImage.Source = ResCache.Brick(18, 3);
+            //                break;
+            //        }
             //        break;
-            //    case Side.Left:
-            //        LeftImage.Source = ResCache.Brick(18, 5);
-            //        break;
-            //    case Side.Right:
-            //        RightImage.Source = ResCache.Brick(18, 6);
-            //        break;
-            //    case Side.Up:
-            //        UpImage.Source = ResCache.Brick(18, 3);
-            //        break;
-            //    }
-            //    break;
             //    //SetUpImagesRockBlack()
-            //case DecalType.Sand & w == WhoIs.Bomb:
-            //    switch (s) {
-            //    case Side.Down:
-            //        DownImage.Source = ResCache.Brick(18, 2);
+            //    case DecalType.Sand && w == WhoIs.Bomb:
+            //        switch (s)
+            //        {
+            //            case Side.Down:
+            //                DownImage.Source = ResCache.Brick(18, 2);
+            //                break;
+            //            case Side.Left:
+            //                LeftImage.Source = ResCache.Brick(17, 10);
+            //                break;
+            //            case Side.Right:
+            //                RightImage.Source = ResCache.Brick(18, 1);
+            //                break;
+            //            case Side.Up:
+            //                UpImage.Source = ResCache.Brick(17, 9);
+            //                break;
+            //        }
             //        break;
-            //    case Side.Left:
-            //        LeftImage.Source = ResCache.Brick(17, 10);
-            //        break;
-            //    case Side.Right:
-            //        RightImage.Source = ResCache.Brick(18, 1);
-            //        break;
-            //    case Side.Up:
-            //        UpImage.Source = ResCache.Brick(17, 9);
-            //        break;
-            //    }
-            //    break;
             //    //SetUpImagesSandBlack()
-            //case DecalType.Rock & w == WhoIs.Ground:
-            //    switch (s) {
-            //    case Side.Down:
-            //        DownImage.Source = ResCache.Brick(17, 5);
+            //    case DecalType.Rock & w == WhoIs.Ground:
+            //        switch (s)
+            //        {
+            //            case Side.Down:
+            //                DownImage.Source = ResCache.Brick(17, 5);
+            //                break;
+            //            case Side.Left:
+            //                LeftImage.Source = ResCache.Brick(17, 6);
+            //                break;
+            //            case Side.Right:
+            //                RightImage.Source = ResCache.Brick(17, 7);
+            //                break;
+            //            case Side.Up:
+            //                UpImage.Source = ResCache.Brick(17, 4);
+            //                break;
+            //        }
             //        break;
-            //    case Side.Left:
-            //        LeftImage.Source = ResCache.Brick(17, 6);
-            //        break;
-            //    case Side.Right:
-            //        RightImage.Source = ResCache.Brick(17, 7);
-            //        break;
-            //    case Side.Up:
-            //        UpImage.Source = ResCache.Brick(17, 4);
-            //        break;
-            //    }
-            //    break;
             //    //SetUpImagesRock()
-            //case DecalType.Sand & w == WhoIs.Ground:
-            //    switch (s) {
-            //    case Side.Down:
-            //        DownImage.Source = ResCache.Brick(17, 3);
+            //    case DecalType.Sand & w == WhoIs.Ground:
+            //        switch (s)
+            //        {
+            //            case Side.Down:
+            //                DownImage.Source = ResCache.Brick(17, 3);
+            //                break;
+            //            case Side.Left:
+            //                LeftImage.Source = ResCache.Brick(17, 1);
+            //                break;
+            //            case Side.Right:
+            //                RightImage.Source = ResCache.Brick(17, 2);
+            //                break;
+            //            case Side.Up:
+            //                UpImage.Source = ResCache.Brick(17, 0);
+            //                break;
+            //        }
             //        break;
-            //    case Side.Left:
-            //        LeftImage.Source = ResCache.Brick(17, 1);
-            //        break;
-            //    case Side.Right:
-            //        RightImage.Source = ResCache.Brick(17, 2);
-            //        break;
-            //    case Side.Up:
-            //        UpImage.Source = ResCache.Brick(17, 0);
-            //        break;
-            //    }
-            //    break;
             //    //SetUpImagesSand()
             //}
-		}
-		public void UpdateSide(Side s, int x, int y)
-		{
-			
-			
-		}
-		public void SandAdd(int x, int y)
-		{
-			
+        }
+        public void UpdateSide(Side s, int x, int y)
+        {
+
+
+        }
+        public void SandAdd(int x, int y)
+        {
+
             //PoleG.Children.Add(DownImage);
             //Canvas.SetLeft(DownImage, x * 10);
             //Canvas.SetTop(DownImage, y * 10);
             //Canvas.SetZIndex(DownImage, 0);
-			
+
             //PoleG.Children.Add(LeftImage);
             //Canvas.SetLeft(LeftImage, (x * 10));
             //Canvas.SetTop(LeftImage, y * 10);
             //Canvas.SetZIndex(LeftImage, 0);
-			
+
             //PoleG.Children.Add(RightImage);
             //Canvas.SetLeft(RightImage, (x * 10) + 7);
             //Canvas.SetTop(RightImage, y * 10);
             //Canvas.SetZIndex(RightImage, 0);
-			
+
             //PoleG.Children.Add(UpImage);
             //Canvas.SetLeft(UpImage, x * 10);
             //Canvas.SetTop(UpImage, (y * 10) + 7);
             //Canvas.SetZIndex(UpImage, 0);
-			
-			
-		}
-	}
+
+
+        }
+    }
 }
 
