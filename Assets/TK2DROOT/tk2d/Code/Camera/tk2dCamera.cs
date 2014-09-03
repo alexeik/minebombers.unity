@@ -268,6 +268,7 @@ public class tk2dCamera : MonoBehaviour
 		if (inheritedCameraSettings.projection == tk2dCameraSettings.ProjectionType.Perspective) {
 			UnityCamera.transparencySortMode = inheritedCameraSettings.transparencySortMode;
 		}
+        Debug.Log("cam size:" +UnityCamera.orthographicSize.ToString());
 	}
 
 	void OnEnable() {

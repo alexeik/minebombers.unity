@@ -1,18 +1,23 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\cls\board\Decals\SandDecals.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\map\MapLoader.cs">
     <Files>
-      <File FileName="Assets\MapLoader.cs" Line="280" Column="48" />
-      <File FileName="Assets\Starter.cs" Line="22" Column="1" />
-      <File FileName="Assets\Enums\Enums.cs" Line="11" Column="16" />
-      <File FileName="Assets\If\IDecal.cs" Line="11" Column="13" />
-      <File FileName="Assets\cls\board\Decals\SandDecals.cs" Line="34" Column="19" />
-      <File FileName="Assets\cls\board\base\Square.cs" Line="156" Column="7" />
-      <File FileName="Assets\GameController.cs" Line="22" Column="31" />
+      <File FileName="Assets\main\LoadTestScene.cs" Line="18" Column="1" />
+      <File FileName="Assets\main\LoadTestScene.cs" Line="1" Column="1" />
+      <File FileName="Assets\Enums\Enums.cs" Line="1" Column="1" />
+      <File FileName="Assets\If\IDecal.cs" Line="1" Column="1" />
+      <File FileName="Assets\cls\board\Decals\SandDecals.cs" Line="14" Column="1" />
+      <File FileName="Assets\cls\board\base\Square.cs" Line="1" Column="1" />
+      <File FileName="Assets\main\Starter.cs" Line="25" Column="1" />
+      <File FileName="Assets\cls\StaticSpriteCache.cs" Line="9" Column="1" />
+      <File FileName="Assets\main\GameController.cs" Line="34" Column="1" />
+      <File FileName="Assets\map\MapLoader.cs" Line="281" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="D:\work\alexei\unity\mb\Assets\main\Starter.cs" line="22" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

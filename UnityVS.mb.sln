@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.mb.CSharp", "UnityVS.mb.CSharp.csproj", "{36C7250A-5BC7-8243-9753-306EE35F41A3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.mb.CSharp.Editor", "UnityVS.mb.CSharp.Editor.csproj", "{4DADE1B5-F645-4303-F25C-2AF5976DD196}"
