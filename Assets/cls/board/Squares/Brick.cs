@@ -59,9 +59,14 @@ namespace AssemblyCSharp
 		{
 			StateList = new Dictionary<int, Sprite>();
 
-            StateList.Add(0, StaticSpriteCache.sprites[4]);
-            StateList.Add(1, StaticSpriteCache.sprites[5]);
-            StateList.Add(2, StaticSpriteCache.sprites[6]);
+            //StateList.Add(0, StaticSpriteCache.sprites[4]);81
+            //StateList.Add(1, StaticSpriteCache.sprites[5]);62
+            //StateList.Add(2, StaticSpriteCache.sprites[6]);63
+
+                 StateList.Add(0, StaticSpriteCache.sprites[81]);
+            StateList.Add(1, StaticSpriteCache.sprites[62]);
+            StateList.Add(2, StaticSpriteCache.sprites[63]);
+
 			State = 0;
 			UpdateImage();
 		}

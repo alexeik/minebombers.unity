@@ -57,9 +57,13 @@ namespace AssemblyCSharp
         }
         public virtual void SetUpImages()
         {
-            StateList.Add(0, StaticSpriteCache.sprites[10]);
-            StateList.Add(1, StaticSpriteCache.sprites[19]);
-            StateList.Add(2, StaticSpriteCache.sprites[18]);
+            //StateList.Add(0, StaticSpriteCache.sprites[10]);
+            //StateList.Add(1, StaticSpriteCache.sprites[19]);
+            //StateList.Add(2, StaticSpriteCache.sprites[18]);
+
+            StateList.Add(0, StaticSpriteCache.sprites[72]);
+            StateList.Add(1, StaticSpriteCache.sprites[77]);
+            StateList.Add(2, StaticSpriteCache.sprites[79]);
         }
         public int IncrementDamage { get; set; }
         public virtual bool UpdateBase(int elapsedTime, int damage)
@@ -150,9 +154,14 @@ namespace AssemblyCSharp
         }
         public override void SetUpImages()
         {
-			StateList.Add(0,StaticSpriteCache.sprites[11]);
-			StateList.Add(1,StaticSpriteCache.sprites[19] );
-			StateList.Add(2,StaticSpriteCache.sprites[18] );
+            //StateList.Add(0,StaticSpriteCache.sprites[11]);
+            //StateList.Add(1,StaticSpriteCache.sprites[19] );
+            //StateList.Add(2,StaticSpriteCache.sprites[18] );
+
+            StateList.Add(0, StaticSpriteCache.sprites[69]);
+            StateList.Add(1, StaticSpriteCache.sprites[77]);
+            StateList.Add(2, StaticSpriteCache.sprites[79]);
+
         }
     }
     public class Rock3 : Rock
@@ -168,9 +177,14 @@ namespace AssemblyCSharp
         }
         public override void SetUpImages()
         {
-			StateList.Add(0,StaticSpriteCache.sprites[12] );
-			StateList.Add(1,StaticSpriteCache.sprites[19] );
-			StateList.Add(2, StaticSpriteCache.sprites[18]);
+            //StateList.Add(0,StaticSpriteCache.sprites[12] );
+            //StateList.Add(1,StaticSpriteCache.sprites[19] );
+            //StateList.Add(2, StaticSpriteCache.sprites[18]);
+
+
+            StateList.Add(0, StaticSpriteCache.sprites[70]);
+            StateList.Add(1, StaticSpriteCache.sprites[77]);
+            StateList.Add(2, StaticSpriteCache.sprites[79]);
         }
     }
     public class Rock4 : Rock
@@ -186,9 +200,14 @@ namespace AssemblyCSharp
         }
         public override void SetUpImages()
         {
-			StateList.Add(0,StaticSpriteCache.sprites[13] );
-			StateList.Add(1,StaticSpriteCache.sprites[19] );
-			StateList.Add(2,StaticSpriteCache.sprites[18]);
+            //StateList.Add(0,StaticSpriteCache.sprites[13] );
+            //StateList.Add(1,StaticSpriteCache.sprites[19] );
+            //StateList.Add(2,StaticSpriteCache.sprites[18]);
+
+            StateList.Add(0, StaticSpriteCache.sprites[73]);
+            StateList.Add(1, StaticSpriteCache.sprites[77]);
+            StateList.Add(2, StaticSpriteCache.sprites[79]);
+
         }
     }
     public class Rock5 : Rock
@@ -204,9 +223,14 @@ namespace AssemblyCSharp
         }
         public override void SetUpImages()
         {
-			StateList.Add(0,StaticSpriteCache.sprites[14] );
-			StateList.Add(1,StaticSpriteCache.sprites[19] );
-			StateList.Add(2,StaticSpriteCache.sprites[18] );
+            //StateList.Add(0,StaticSpriteCache.sprites[14] );
+            //StateList.Add(1,StaticSpriteCache.sprites[19] );
+            //StateList.Add(2,StaticSpriteCache.sprites[18] );
+
+            StateList.Add(0, StaticSpriteCache.sprites[78]);
+            StateList.Add(1, StaticSpriteCache.sprites[77]);
+            StateList.Add(2, StaticSpriteCache.sprites[79]);
+
         }
     }
     public class Rock6 : Rock
@@ -222,9 +246,13 @@ namespace AssemblyCSharp
         }
         public override void SetUpImages()
         {
-			StateList.Add(0,StaticSpriteCache.sprites[15]);
-			StateList.Add(1,StaticSpriteCache.sprites[19]);
-			StateList.Add(2,StaticSpriteCache.sprites[18]);
+            //StateList.Add(0,StaticSpriteCache.sprites[15]);
+            //StateList.Add(1,StaticSpriteCache.sprites[19]);
+            //StateList.Add(2,StaticSpriteCache.sprites[18]);
+
+            StateList.Add(0, StaticSpriteCache.sprites[83]);
+            StateList.Add(1, StaticSpriteCache.sprites[77]);
+            StateList.Add(2, StaticSpriteCache.sprites[79]);
         }
 
     }
@@ -241,9 +269,14 @@ namespace AssemblyCSharp
         }
         public override void SetUpImages()
         {
-			StateList.Add(0,StaticSpriteCache.sprites[16]);
-			StateList.Add(1,StaticSpriteCache.sprites[19]);
-			StateList.Add(2,StaticSpriteCache.sprites[18]);
+            //StateList.Add(0,StaticSpriteCache.sprites[16]);
+            //StateList.Add(1,StaticSpriteCache.sprites[19]);
+            //StateList.Add(2,StaticSpriteCache.sprites[18]);
+
+            StateList.Add(0, StaticSpriteCache.sprites[74]);
+            StateList.Add(1, StaticSpriteCache.sprites[77]);
+            StateList.Add(2, StaticSpriteCache.sprites[79]);
+
         }
     }
     public class Rock8 : Rock
@@ -259,9 +292,13 @@ namespace AssemblyCSharp
         }
         public override void SetUpImages()
         {
-			StateList.Add(0,StaticSpriteCache.sprites[17]);
-			StateList.Add(1,StaticSpriteCache.sprites[19]);
-			StateList.Add(2,StaticSpriteCache.sprites[18]);
+            //StateList.Add(0,StaticSpriteCache.sprites[17]);
+            //StateList.Add(1,StaticSpriteCache.sprites[19]);
+            //StateList.Add(2,StaticSpriteCache.sprites[18]);
+
+            StateList.Add(0, StaticSpriteCache.sprites[75]);
+            StateList.Add(1, StaticSpriteCache.sprites[77]);
+            StateList.Add(2, StaticSpriteCache.sprites[79]);
         }
 
     }
@@ -278,7 +315,8 @@ namespace AssemblyCSharp
         }
         public override void SetUpImages()
         {
-			StateList.Add(0,StaticSpriteCache.sprites[20]);
+            //StateList.Add(0,StaticSpriteCache.sprites[20]);
+            StateList.Add(0, StaticSpriteCache.sprites[82]);
         }
 
 
@@ -296,7 +334,8 @@ namespace AssemblyCSharp
         }
         public override void SetUpImages()
         {
-			StateList.Add(0,StaticSpriteCache.sprites[21]);
+            //StateList.Add(0,StaticSpriteCache.sprites[21]);
+            StateList.Add(0, StaticSpriteCache.sprites[68]);
         }
 
     }
@@ -313,7 +352,8 @@ namespace AssemblyCSharp
         }
         public override void SetUpImages()
         {
-			StateList.Add(0,StaticSpriteCache.sprites[19]);
+            //StateList.Add(0,StaticSpriteCache.sprites[19]);
+            StateList.Add(0, StaticSpriteCache.sprites[77]);
         }
 
     }
@@ -330,7 +370,8 @@ namespace AssemblyCSharp
         }
         public override void SetUpImages()
         {
-			StateList.Add(0,StaticSpriteCache.sprites[18]);
+            //StateList.Add(0,StaticSpriteCache.sprites[18]);
+            StateList.Add(0, StaticSpriteCache.sprites[79]);
         }
 
     }

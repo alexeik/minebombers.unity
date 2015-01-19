@@ -100,6 +100,7 @@ namespace AssemblyCSharp
             }
                
             _Prefab.GetComponent<SpriteRenderer>().sprite = m_Current.Base;
+            _Prefab.GetComponent<SpriteRenderer>().sortingLayerID = 0;
         }
         //public void Update2(GameObject go)
         //{

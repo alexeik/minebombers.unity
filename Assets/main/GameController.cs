@@ -18,6 +18,7 @@ namespace AssemblyCSharp
 		public const uint MaxXInt = MaxX / 10;
 		public static Square[,] board = new Square[MaxXInt + 1, MaxYInt + 1];
 		public static IDecal[,] DecalLayer = new IDecal[MaxXInt + 1, MaxYInt + 1];
+        public static PUPI[,] PickupLayer = new PUPI[MaxXInt + 1, MaxYInt + 1];
 		public const uint MinY = 10;
 		public const uint MinX = 10;
 		public const uint MinYInt = MinY / 10;

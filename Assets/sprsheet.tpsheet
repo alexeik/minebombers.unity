@@ -1,0 +1,35 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# http://www.codeandweb.com/texturepacker/unity
+#
+# Sprite sheet: texture.png (64 x 64)
+# $TexturePacker:SmartUpdate:9bfd28111db71075eb69949a005d4ace:600977f2aa2e6fecd9404700f3387c70:bce0b0a281de5c4648358e74a98a89a5$
+#
+
+barrel;2;52;10;10;0;1
+bioslime;2;40;10;10;0;1
+grid;2;28;10;10;0;1
+key;2;16;10;10;0;1
+mb_178;2;4;10;10;0;1
+mb_179;14;52;10;10;0;1
+mb_180;26;52;10;10;0;1
+mb_beton;38;52;10;10;0;1
+mb_ground;50;52;10;10;0;1
+pu;14;40;10;10;0;1
+rock1;14;28;10;10;0;1
+rock10;14;16;10;10;0;1
+rock11;14;4;10;10;0;1
+rock12;26;40;10;10;0;1
+rock2;38;40;10;10;0;1
+rock3;50;40;10;10;0;1
+rock4;26;28;10;10;0;1
+rock5;26;16;10;10;0;1
+rock6;26;4;10;10;0;1
+rock7;38;28;10;10;0;1
+rock8;50;28;10;10;0;1
+rock9;38;16;10;10;0;1
+sand;38;4;10;10;0;1
+sand2;50;16;10;10;0;1
+sand3;50;4;10;10;0;1

@@ -1,1 +1,4 @@
-4.5.2f1:1.9.0.0
+4.6.1f1:1.9.8.0
+A:/unity/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll
+A:/unity/Data/UnityExtensions/Unity/GUISystem/4.6.1/Editor/UnityEditor.UI.dll
+A:/unity/Data/Managed/UnityEditor.Graphs.dll

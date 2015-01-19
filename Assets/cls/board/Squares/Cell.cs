@@ -58,7 +58,8 @@ namespace AssemblyCSharp
         }
         public virtual void SetUpImages()
         {
-            Sprite sp = StaticSpriteCache.sprites[2];
+            //Sprite sp = StaticSpriteCache.sprites[2];71
+            Sprite sp = StaticSpriteCache.sprites[71];
             StateList.Add(0, sp);
         }
         public int IncrementDamage { get; set; }

@@ -66,7 +66,8 @@ namespace AssemblyCSharp
         public virtual void SetUpImages()
         {
 
-            StateList.Add(0, StaticSpriteCache.sprites[22]);
+            //StateList.Add(0, StaticSpriteCache.sprites[22]);
+            StateList.Add(0, StaticSpriteCache.sprites[84]);
         }
         public int IncrementDamage { get; set; }
         public bool UpdateBase(int elapsedTime, int damage)
@@ -117,7 +118,8 @@ namespace AssemblyCSharp
     {
         public override void SetUpImages()
         {
-            StateList.Add(0, StaticSpriteCache.sprites[23]);
+            //StateList.Add(0, StaticSpriteCache.sprites[23]);
+            StateList.Add(0, StaticSpriteCache.sprites[80]);
         }
 
     }
@@ -125,7 +127,8 @@ namespace AssemblyCSharp
     {
         public override void SetUpImages()
         {
-            StateList.Add(0, StaticSpriteCache.sprites[24]);
+            //StateList.Add(0, StaticSpriteCache.sprites[24]);
+            StateList.Add(0, StaticSpriteCache.sprites[85]);
         }
 
     }

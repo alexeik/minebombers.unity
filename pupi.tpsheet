@@ -1,0 +1,30 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# http://www.codeandweb.com/texturepacker/unity
+#
+# Sprite sheet: texture.pupi.png (64 x 64)
+# $TexturePacker:SmartUpdate:a21839e806dc39642c89eeef0a5dd715:f0fd51e48028907f4243e4276e07c73b:6c7ae1e78d77c09419648845848719c6$
+#
+
+ancientshield;2;52;10;10;0.5;0.5
+armorbox;14;52;10;10;0.5;0.5
+axe;26;52;10;10;0.5;0.5
+axebig;38;52;10;10;0.5;0.5
+big_barrel_extinged;50;52;10;10;0.5;0.5
+big_shell_extinged;2;40;10;10;0.5;0.5
+brassbraclet;14;40;10;10;0.5;0.5
+crown;26;40;10;10;0.5;0.5
+dynamite_extinged;38;40;10;10;0.5;0.5
+firstaid;50;40;10;10;0.5;0.5
+goldenbar;2;28;10;10;0.5;0.5
+goldencross;14;28;10;10;0.5;0.5
+goldenegg;26;28;10;10;0.5;0.5
+pileofcoins;38;28;10;10;0.5;0.5
+rockdrill;50;28;10;10;0.5;0.5
+rubin;2;16;10;10;0.5;0.5
+sceptire;14;16;10;10;0.5;0.5
+small_barrel_extinged;26;16;10;10;0.5;0.5
+small_shell_extinged;38;16;10;10;0.5;0.5
+teleport;50;16;10;10;0.5;0.5

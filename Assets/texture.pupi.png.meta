@@ -1,0 +1,267 @@
+fileFormatVersion: 2
+guid: 830a0f2090344b048bf1a24eae39eac5
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: texture.pupi_0
+    21300002: texture.pupi_1
+    21300004: texture.pupi_2
+    21300006: texture.pupi_3
+    21300008: texture.pupi_4
+    21300010: texture.pupi_5
+    21300012: texture.pupi_6
+    21300014: texture.pupi_7
+    21300016: texture.pupi_8
+    21300018: texture.pupi_9
+    21300020: texture.pupi_10
+    21300022: texture.pupi_11
+    21300024: texture.pupi_12
+    21300026: texture.pupi_13
+    21300028: texture.pupi_14
+    21300030: texture.pupi_15
+    21300032: texture.pupi_16
+    21300034: texture.pupi_17
+    21300036: texture.pupi_18
+    21300038: texture.pupi_19
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: texture.pupi_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 52
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_1
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 52
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_2
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 52
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_3
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 52
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_4
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 52
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_5
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 40
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_6
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 40
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_7
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 40
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_8
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 40
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_9
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 40
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_10
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 28
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_11
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 28
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_12
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 28
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_13
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 28
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_14
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 28
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_15
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 16
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_16
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 16
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_17
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 16
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_18
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 16
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: texture.pupi_19
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 16
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

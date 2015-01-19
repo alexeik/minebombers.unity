@@ -9,15 +9,15 @@
 //------------------------------------------------------------------------------
 using System;
 using UnityEngine;
-
+using Assets.cls;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace AssemblyCSharp
 {
-    using Assets.cls;
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Diagnostics;
+
 	public class Ground : ISquareDiv
 	{
 		
@@ -58,7 +58,8 @@ namespace AssemblyCSharp
 			StateList = new Dictionary<int, Sprite>();
 			// uri = New Uri("images/map/mb_ground.png", UriKind.Relative)
 			//imgsrc =
-            Sprite sp = StaticSpriteCache.sprites[8];
+            //Sprite sp = StaticSpriteCache.sprites[8];
+            Sprite sp = StaticSpriteCache.sprites[65];
 			StateList.Add(0,sp );
 			State = 0;
 			UpdateImage();

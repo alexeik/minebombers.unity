@@ -54,7 +54,8 @@ namespace AssemblyCSharp
 			StateList = new Dictionary<int, Sprite>();
 			//uri = New Uri("images/map/mb_beton.png", UriKind.Relative)
 			//imgsrc = New System.Windows.Media.Imaging.BitmapImage(uri)
-            Sprite sp = StaticSpriteCache.sprites[7];
+            //Sprite sp = StaticSpriteCache.sprites[7];
+            Sprite sp = StaticSpriteCache.sprites[64];
 
 
 			StateList.Add(0, sp);
