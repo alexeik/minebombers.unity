@@ -217,6 +217,10 @@ namespace AssemblyCSharp
 		{
             return Prefab.transform.position.y;//Canvas.GetTop(Image);
 		}
+        public bool IsPassable
+        {
+            get { return m_Current.IsPassable(); }
+        }
     }
 
 

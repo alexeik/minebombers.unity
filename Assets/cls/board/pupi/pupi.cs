@@ -63,7 +63,7 @@ namespace AssemblyCSharp
             }
 
             _Prefab.GetComponent<SpriteRenderer>().sprite =AssignedSprite;
-            _Prefab.GetComponent<SpriteRenderer>().sortingLayerID = 1;
+            _Prefab.GetComponent<SpriteRenderer>().sortingLayerName = "PupiLayer";
         }
         private void LoadMe()
         {

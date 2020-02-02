@@ -120,7 +120,7 @@ public class MapLoader
                 BuildPUPI(c, column, row);
                 break;
         }
-    }
+    } 
     public void BuildBoard(int c, int column, int row)
     {
         try

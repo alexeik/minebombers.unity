@@ -20,7 +20,8 @@ namespace AssemblyCSharp
 		GameBoardReady = 5,
 		LobbyReady = 6,
 		CurtainReady = 7,
-		Hands = 8
+		Hands = 8,
+        Idle=9
 		}
 }
 
