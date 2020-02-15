@@ -74,15 +74,21 @@ namespace AssemblyCSharp
         {
             IncrementDamage = IncrementDamage + damage;
             //тут реализовываетс ялогика, разрушения. каждый разрушшаемый блок, разрушается по разному в зависимости от Damage(кирка, взрыв)
-            switch (IncrementDamage)
+            //switch (IncrementDamage)
+            //{
+            //    //DoDamage сразу меняет картинку квадрата. после скольки то ударов.
+            //    case (>= 2):// ERROR: Case labels with binary operators are unsupported : GreaterThanOrEqual
+                    
+            //        this.State = this.State + 1;
+            //        return true;
+            //    //Case 9, 18, 27
+            //    //    DoDamage(0, 1)
+            //}
+            if (IncrementDamage >=2)
             {
-                //DoDamage сразу меняет картинку квадрата. после скольки то ударов.
-                case  // ERROR: Case labels with binary operators are unsupported : GreaterThanOrEqual
-                    2:
-                    this.State = this.State + 1;
-                    return true;
-                //Case 9, 18, 27
-                //    DoDamage(0, 1)
+                this.State = this.State + 1;
+                return true;
+
             }
             return false;
         }
