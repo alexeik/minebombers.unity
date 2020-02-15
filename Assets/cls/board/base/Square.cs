@@ -19,8 +19,8 @@ namespace AssemblyCSharp
         public string Code;
         public ISquareDiv m_Current;
         private GameObject _Prefab = null;
-		static public Ground GroundCache;
-		private WhoIs Who;
+        static public Ground GroundCache;
+        private WhoIs Who;
 
         public GameObject Prefab
         {
@@ -33,10 +33,11 @@ namespace AssemblyCSharp
                 _Prefab = value;
             }
         }
-		public ISquareDiv Current {
-			get { return m_Current; }
-			set { m_Current = value; }
-		}
+        public ISquareDiv Current
+        {
+            get { return m_Current; }
+            set { m_Current = value; }
+        }
         public Stack<ISquareDiv> m_SquareDivCollection;
 
         public Stack<ISquareDiv> SquareDivCollection
@@ -67,7 +68,7 @@ namespace AssemblyCSharp
         private void AddGround()
         {
             m_SquareDivCollection = new Stack<ISquareDiv>();
-			m_SquareDivCollection.Push(GroundCache);
+            m_SquareDivCollection.Push(GroundCache);
         }
 
         public void AddSquare(ISquareDiv square)
@@ -98,7 +99,7 @@ namespace AssemblyCSharp
             {
                 return;
             }
-               
+
             _Prefab.GetComponent<SpriteRenderer>().sprite = m_Current.Base;
             _Prefab.GetComponent<SpriteRenderer>().sortingLayerID = 0;
         }
@@ -107,19 +108,19 @@ namespace AssemblyCSharp
 
         //    go.GetComponent<SpriteRenderer>().sprite = m_Current.Base;
         //}
-		public void PreUpdateDecals(WhoIs w)
-		{
-			Who = w;
-			UpdateDecals();
-		}
-		/// <summary>
-		/// СОздает декорации вокруг ячейки, по которой был нанесен урон.
-		/// </summary>
-		/// <remarks></remarks>
-		private void UpdateDecals()
-		{
-			//обновляеми следующую ячейка по ходу движения
-			//DONE: сделать роутер для разного направления движения. вообще то не надо. так как это определяется что плеер разрушает.
+        public void PreUpdateDecals(WhoIs w)
+        {
+            Who = w;
+            UpdateDecals();
+        }
+        /// <summary>
+        /// СОздает декорации вокруг ячейки, по которой был нанесен урон.
+        /// </summary>
+        /// <remarks></remarks>
+        private void UpdateDecals()
+        {
+            //обновляеми следующую ячейка по ходу движения
+            //DONE: сделать роутер для разного направления движения. вообще то не надо. так как это определяется что плеер разрушает.
             float debugx = 0;
             debugx = GetX();
             float debugy = 0;
@@ -130,101 +131,154 @@ namespace AssemblyCSharp
             }
 
 
-			int x1 = 0;
-			int y1 = 0;
+            int x1 = 0;
+            int y1 = 0;
             //все смещения ниже, указывают на соседние ячейки относительно ячейки типа Ground в getx и gety координаты ячейки ground
             float t;
-            t=debugx * 10f;
+            t = debugx * 10f;
             t = t - 1;
             x1 = (int)(t);
             y1 = Convert.ToInt32(-debugy * 10f);
-			UpdateDecalSub(x1, y1, Side.Right, Who);
+            UpdateDecalSub(x1, y1, Side.Right, Who);
             x1 = Convert.ToInt32(debugx * 10 + 1);
             y1 = Convert.ToInt32(-debugy * 10);
-			UpdateDecalSub(x1, y1, Side.Left, Who);
+            UpdateDecalSub(x1, y1, Side.Left, Who);
             x1 = Convert.ToInt32(debugx * 10);
             y1 = Convert.ToInt32(-debugy * 10 - 1);
-			UpdateDecalSub(x1, y1, Side.Up, Who);
+            UpdateDecalSub(x1, y1, Side.Up, Who);
             x1 = Convert.ToInt32(debugx * 10);
             y1 = Convert.ToInt32(-debugy * 10 + 1);
-			UpdateDecalSub(x1, y1, Side.Down, Who);
-			
-			
-		}
-		private void UpdateDecalSub(int x1, int y1, Side s, WhoIs w)
-		{
-			bool f = false;
-			//DONE: сделать декорацию для бомб. декорация для бомб сделана только для случаев, когда не происходит разрушения. то есть для начальных случаев.
-			//например: когда рядом целый песок или целая скала. если при врзрыве скала меняет состояние, то декорация будет под ней. так как понятно почему.
-			//adddamage у объекта бомбы, происходит для всех участвков под бомбой. это происходит слева направ сверх вниз. и так как я тестировал , когда скала разрушалась
-			//снизу, то разрушение затирало декорацию.
-			
-			if (x1 >= GameController.MinXInt & y1 >= GameController.MinYInt & x1 < GameController.MaxXInt & y1 < GameController.MaxYInt) {
-				
-				if ((GameController.DecalLayer[x1, y1] == null)) {
-					if ((GameController.board[x1, y1] == null))
-						return;
-					
-					if (GameController.board[x1, y1].Current is Rock) {
-						GameController.DecalLayer[x1, y1] = new SandDecal(x1, y1);
-						f = true;
-					}
-					if (GameController.board[x1, y1].Current is Sand) {
-						GameController.DecalLayer[x1, y1] = new SandDecal(x1, y1);
-						f = true;
-					}
-					if (!f)
-						return;
-				}
-				
-				if (GameController.board[x1, y1].Current is Rock) {
-					f = true;
-				}
-				
-				if (GameController.board[x1, y1].Current is Sand) {
-					f = true;
-				}
-				((IDecal)GameController.DecalLayer[x1, y1]).Update(x1, y1, s, w);
-			}
-		}
-		private void RemoveDecal()
-		{
-			//убираем декорации с разрушенной ячейки
-			int x1 = 0;
-			int y1 = 0;
-            x1 = (int)(GetX() / 10);
-            y1 = (int)(GetY() / 10);
-			RemoveDecalSub(x1, y1, Side.Left, Who);
-					
-		}
-		private void RemoveDecalSub(int x1, int y1, Side s, WhoIs w)
-		{
-			if (x1 >= GameController.MinXInt & y1 >= GameController.MinYInt & x1 <= GameController.MaxXInt & y1 <= GameController.MaxYInt) {
-				
-				if ((GameController.DecalLayer[x1, y1] == null)) {
-				} else {
-					((IDecal)GameController.DecalLayer[x1, y1]).Remove(x1, y1, s, w);
-					GameController.DecalLayer[x1, y1] = null;
-				}
-				
-			}
-		}
-		private float GetX()
-		{
-			return Prefab.transform.position.x;// Canvas.GetLeft(Image);
-		}
+            UpdateDecalSub(x1, y1, Side.Down, Who);
+
+
+        }
+        private void UpdateDecalSub(int x1, int y1, Side s, WhoIs w)
+        {
+            bool f = false;
+            //DONE: сделать декорацию для бомб. декорация для бомб сделана только для случаев, когда не происходит разрушения. то есть для начальных случаев.
+            //например: когда рядом целый песок или целая скала. если при врзрыве скала меняет состояние, то декорация будет под ней. так как понятно почему.
+            //adddamage у объекта бомбы, происходит для всех участвков под бомбой. это происходит слева направ сверх вниз. и так как я тестировал , когда скала разрушалась
+            //снизу, то разрушение затирало декорацию.
+
+            if (x1 >= GameController.MinXInt & y1 >= GameController.MinYInt & x1 < GameController.MaxXInt & y1 < GameController.MaxYInt)
+            {
+
+                if ((GameController.DecalLayer[x1, y1] == null))
+                {
+                    if ((GameController.board[x1, y1] == null))
+                        return;
+
+                    if (GameController.board[x1, y1].Current is Rock)
+                    {
+                        GameController.DecalLayer[x1, y1] = new SandDecal(x1, y1);
+                        f = true;
+                    }
+                    if (GameController.board[x1, y1].Current is Sand)
+                    {
+                        GameController.DecalLayer[x1, y1] = new SandDecal(x1, y1);
+                        f = true;
+                    }
+                    if (!f)
+                        return;
+                }
+
+                if (GameController.board[x1, y1].Current is Rock)
+                {
+                    f = true;
+                }
+
+                if (GameController.board[x1, y1].Current is Sand)
+                {
+                    f = true;
+                }
+                ((IDecal)GameController.DecalLayer[x1, y1]).Update(x1, y1, s, w);
+            }
+        }
+        private void RemoveDecal()
+        {
+            //убираем декорации с разрушенной ячейки
+            float debugx = 0;
+            debugx = GetX();
+            float debugy = 0;
+            debugy = GetY();
+            int x1 = 0;
+            int y1 = 0;
+            //все смещения ниже, указывают на соседние ячейки относительно ячейки типа Ground в getx и gety координаты ячейки ground
+            float t;
+            t = debugx * 10f;
+         
+            x1 = (int)(t);
+            y1 = Convert.ToInt32(-debugy * 10f);
+
+            //x1 = (int)(GetX() / 10);
+            //y1 = (int)(GetY() / 10);
+            RemoveDecalSub(x1, y1, Side.Left, Who);
+
+        }
+        private void RemoveDecalSub(int x1, int y1, Side s, WhoIs w)
+        {
+            if (x1 >= GameController.MinXInt & y1 >= GameController.MinYInt & x1 <= GameController.MaxXInt & y1 <= GameController.MaxYInt)
+            {
+
+                if ((GameController.DecalLayer[x1, y1] == null))
+                {
+                }
+                else
+                {
+                    ((IDecal)GameController.DecalLayer[x1, y1]).Remove(x1, y1, s, w);
+                    GameController.DecalLayer[x1, y1] = null;
+                }
+
+            }
+        }
+        private float GetX()
+        {
+            return Prefab.transform.position.x;// Canvas.GetLeft(Image);
+        }
         private float GetY()
-		{
+        {
             return Prefab.transform.position.y;//Canvas.GetTop(Image);
-		}
+        }
         public bool IsPassable
         {
             get { return m_Current.IsPassable(); }
         }
+        public void DoIncrementDamage(int elapsedTime, int damage)
+        {
+            Who = WhoIs.Ground;
+            DoDamage(0, damage);
+        }
+
+        bool doupdate = false;
+        bool _Init = false;
+
+        public void DoDamage(int elaptime, int damage)
+        {
+            if (!m_Current.CanBeDamaged())
+            {
+                return;
+            }
+            doupdate = m_Current.UpdateBase(0, damage);
+
+            if (m_Current.YouMustRemoveMe() && doupdate)
+            {
+                m_Current = null;
+                GetCurrent();
+                RemoveDecal();
+                if (m_Current.GetType() == typeof(Ground) && _Init == false)
+                {
+                    UpdateDecals();
+                }
+            }
+
+
+            if (m_Current.YouMustUpdateMe() && !m_Current.YouMustRemoveMe() && doupdate)
+            {
+                Update();
+            }
+            doupdate = false;
+
+        }
     }
-
-
-
-
 }
 
