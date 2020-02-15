@@ -13,31 +13,31 @@ namespace Assets.cls.Behaviours
     class DefaultPlayerBehaviour : MonoBehaviour
     {
         public float speed = 1f;
-        public int Num=1; //задает порядковый номер игрока.
+        public int Num = 1; //задает порядковый номер игрока.
         private MoveDirection PrevDir;
         private MoveDirection Dir;
         public PlayerSoul NextSoul;
         public PlayerSoul m_MySoul;
         public MoveDirection LookTo;
-    public   Boolean DirectionChanged;
-    private  bool m_locked;
-    private int Xsquare;
-    private int Ysquare;
-    private float X;
-    private float Y;
-    private decimal SpriteH=0.1M;
-    private decimal SpriteW = 0.1M;
-    private int Xsquare2;
-    private int Ysquare2;
-    private int Ysquare1;
-    private int Xsquare1;
-    private  uint MaxX=630;
-    private  uint MinY=0;
-    private  uint MinX=0;
-    private  uint MaxY=630;
-    private Animator animator;
-    private bool f=false;
-    private MoveDirection m_locked_dir;
+        public Boolean DirectionChanged;
+        private bool m_locked;
+        private int Xsquare;
+        private int Ysquare;
+        private float X;
+        private float Y;
+        private decimal SpriteH = 0.1M;
+        private decimal SpriteW = 0.1M;
+        private int Xsquare2;
+        private int Ysquare2;
+        private int Ysquare1;
+        private int Xsquare1;
+        private uint MaxX = 630;
+        private uint MinY = 0;
+        private uint MinX = 0;
+        private uint MaxY = 630;
+        private Animator animator;
+        private bool f = false;
+        private MoveDirection m_locked_dir;
 
         public void Update()
         {
@@ -48,7 +48,7 @@ namespace Assets.cls.Behaviours
             Y = transform.position.y;
 
 
-          
+
             //Quaternion rotation = Quaternion.AngleAxis(10f * Time.deltaTime, new Vector3( 1f, 1f, -0.5f));
 
             // применение вращения
@@ -328,7 +328,7 @@ namespace Assets.cls.Behaviours
                 if ((m_MySoul == null))
                     return;
                 seccounter += Time.deltaTime;
-                if (seccounter>0.05)
+                if (seccounter > 0.05)
                 {
                     Move(0, m_MySoul.PlayerDirection);
                     seccounter = 0;
@@ -338,14 +338,16 @@ namespace Assets.cls.Behaviours
 
         }
         public float seccounter;
-     
+
 
         public void Start()
         {
             animator = this.GetComponent<Animator>();
             //animator.SetInteger("MyAction", (int)EnumMyAction.Move);
             //animator.SetFloat("Dir", 0.1f);
+            MyActionPrevValue = EnumMyAction.Idle;
             MyActionChange(EnumMyAction.Idle);
+
         }
 
         public void Awake()
@@ -389,7 +391,7 @@ namespace Assets.cls.Behaviours
 
         public void UpdateNextSoul(PlayerSoul s)
         {
-          
+
             if (CanDoATurn(s.PlayerDirection))
             {
                 //Тут анлочимся. так как нужно обойти ситуацию, когда игрок залочился у бетон и повернул сразу в isPassable=false.  и снимаем топор.
@@ -452,7 +454,7 @@ namespace Assets.cls.Behaviours
             //далее мы округляем float координату до 2 разрядов, умножаем на 100 и получаем значение в пикселях. то есть так мы узнаем, на каком реально пикселе стоит картинка.
             //также множится все внутри функции округления, иначе возникают косяки с округлением на таких числах 2.509998f
             //Return True
-            int kof = 10 ;
+            int kof = 10;
             decimal f1;
             int d;
             int d2;
@@ -470,7 +472,7 @@ namespace Assets.cls.Behaviours
 
                     decimal f;
 
-                   // d = (int)(Math.Round(transform.position.x * 100f, 2, MidpointRounding.AwayFromZero));
+                    // d = (int)(Math.Round(transform.position.x * 100f, 2, MidpointRounding.AwayFromZero));
                     d2 = (int)Math.Ceiling((Math.Round(transform.position.x * 100f, 2, MidpointRounding.AwayFromZero)));
                     //f = Convert.ToDecimal(f1) ;
                     //d=Convert.ToInt16( f);
@@ -501,7 +503,7 @@ namespace Assets.cls.Behaviours
             }
             return false;
         }
-        private  bool IsLocked()
+        private bool IsLocked()
         {
             return m_locked;
         }
@@ -517,9 +519,9 @@ namespace Assets.cls.Behaviours
 
             switch (dir)
             {
-                case MoveDirection.Top: 
-                    Xsquare =Convert.ToInt16( Math.Floor( X * 10f));
-                    Ysquare =Convert.ToInt16( Math.Floor((-Y + (float)SpriteH - kof) * 10));
+                case MoveDirection.Top:
+                    Xsquare = Convert.ToInt16(Math.Floor(X * 10f));
+                    Ysquare = Convert.ToInt16(Math.Floor((-Y + (float)SpriteH - kof) * 10));
                     break;
                 case MoveDirection.Left:
                     Xsquare = Convert.ToInt16(Math.Floor((X + (float)SpriteW - kof) * 10));
@@ -538,7 +540,7 @@ namespace Assets.cls.Behaviours
             //когда игрок осуществляет поворт, то нужно считать по другому. без spritew,h
             //поворот будет определятся на nextsoul
         }
-        private  void LookUpNextSquare(MoveDirection dir)
+        private void LookUpNextSquare(MoveDirection dir)
         {
             decimal onetenth = 0.01m;
 
@@ -550,9 +552,9 @@ namespace Assets.cls.Behaviours
                     //Xsquare2 = Convert.ToInt16(Math.Floor((Convert.ToDecimal(X) + SpriteW - Convert.ToDecimal(onetenth)) * 10m));
                     //Ysquare2 = Convert.ToInt16(Math.Floor((-Convert.ToDecimal(Y) - Convert.ToDecimal(onetenth)) * 10));
 
-               
-                    Ysquare1 = (int)Math.Floor((-(decimal)Math.Round(transform.position.y, 2) - onetenth )*10m);
-                    Xsquare1 = (int)Math.Floor(((decimal)Math.Round(transform.position.x, 2) ) * 10m);
+
+                    Ysquare1 = (int)Math.Floor((-(decimal)Math.Round(transform.position.y, 2) - onetenth) * 10m);
+                    Xsquare1 = (int)Math.Floor(((decimal)Math.Round(transform.position.x, 2)) * 10m);
 
                     break;
                 case MoveDirection.Left:
@@ -560,7 +562,7 @@ namespace Assets.cls.Behaviours
                     //Xsquare2 = Convert.ToInt16(Math.Floor((Convert.ToDecimal(X) - Convert.ToDecimal(onetenth)) * 10));
                     //Ysquare2 = Convert.ToInt16(Math.Floor((-Convert.ToDecimal(Y) + SpriteH - Convert.ToDecimal(onetenth)) * 10));
                     Xsquare1 = (int)Math.Floor(((decimal)Math.Round(transform.position.x, 2) - onetenth) * 10m);
-                    Ysquare1 =(int)Math.Floor( (-(decimal)Math.Round(transform.position.y, 2)) * 10m);
+                    Ysquare1 = (int)Math.Floor((-(decimal)Math.Round(transform.position.y, 2)) * 10m);
 
                     break;
 
@@ -577,19 +579,19 @@ namespace Assets.cls.Behaviours
                     //Xsquare2 = Convert.ToInt16(Math.Floor((Convert.ToDecimal(X) + SpriteW) * 10m));
                     //Ysquare2 =Convert.ToInt16(  Math.Floor(-Convert.ToDecimal(Y) * 10m));
                     decimal t;
-                    t=(decimal)Math.Round(transform.position.x, 2) + SpriteW ;
+                    t = (decimal)Math.Round(transform.position.x, 2) + SpriteW;
                     Xsquare1 = (int)Math.Floor(t * 10m);
-                    t=-(decimal)Math.Round(transform.position.y, 2) + SpriteH -onetenth;
+                    t = -(decimal)Math.Round(transform.position.y, 2) + SpriteH - onetenth;
                     Ysquare1 = (int)Math.Floor((t * 10m));
                     break;
             }
 
         }
-        private  bool IsNextSquarePassable(int x, int y)
+        private bool IsNextSquarePassable(int x, int y)
 
         {
             if (y * 10 <= MaxY & x * 10 <= MaxX & y * 10 >= MinY & x * 10 >= MinX)
-           
+
             {
                 return GameController.board[x, y].IsPassable;
             }
@@ -598,7 +600,7 @@ namespace Assets.cls.Behaviours
                 return false;
             }
         }
-        private  bool GetTrackItem(int x, int y)
+        private bool GetTrackItem(int x, int y)
         {
             //пока TrackLayer не введен в unity версии
             //for (int i = 0; i <= TrackLayer.Count - 1; i++)
@@ -627,7 +629,7 @@ namespace Assets.cls.Behaviours
             }
             return true;
         }
-        private  bool WeCanMove(MoveDirection dir)
+        private bool WeCanMove(MoveDirection dir)
         {
             //проверить если левый не проходим,то возвратить правду
             //проверить если правый не проходим ,то возвратить правду
@@ -655,16 +657,17 @@ namespace Assets.cls.Behaviours
         private bool UnlockMe(MoveDirection dir)
         {
             m_locked = false;
-           return true;
+            return true;
         }
         public void TakeAxe()
         {
-
+            MyActionPrevValue = MyAction;
             MyActionChange(EnumMyAction.Axe);
             MyAction = EnumMyAction.Axe;
         }
         public void TakeOffAxe()
         {
+            MyActionPrevValue = MyAction;
             if (MyAction == EnumMyAction.Axe)
             {
 
@@ -674,12 +677,13 @@ namespace Assets.cls.Behaviours
         }
         private void TakeHands()
         {
-
+            MyActionPrevValue = MyAction;
             MyActionChange(EnumMyAction.Hands);
             MyAction = EnumMyAction.Hands;
         }
         public void TakeOffHands()
         {
+            MyActionPrevValue = MyAction;
             if (MyAction == EnumMyAction.Hands)
             {
 
@@ -727,7 +731,7 @@ namespace Assets.cls.Behaviours
             //    }
             //}
             return false;
-           
+
         }
         private void MoveMe(int len2, MoveDirection dir)
         {
@@ -746,26 +750,26 @@ namespace Assets.cls.Behaviours
                     //m_Image.SetValue(Canvas.LeftProperty, Convert.ToDouble(X));
 
                     transform.position -= new Vector3(len, 0.0f, 0.0f);
-                    
+
                     break;
                 case MoveDirection.Down:
                     //Y = Convert.ToDouble(m_Image.GetValue(Canvas.TopProperty)) + Convert.ToDouble(len);
                     //m_Image.SetValue(Canvas.TopProperty, Convert.ToDouble(Y));
                     transform.position -= new Vector3(0.0f, len, 0.0f);
-                    
+
                     break;
                 case MoveDirection.Right:
                     //X = Convert.ToDouble(m_Image.GetValue(Canvas.LeftProperty)) + Convert.ToDouble(len);
                     //m_Image.SetValue(Canvas.LeftProperty, Convert.ToDouble(X));
                     transform.position += new Vector3(len, 0.0f, 0.0f);
-                    
+
                     break;
                 case MoveDirection.Top:
                     //Y = Convert.ToDouble(m_Image.GetValue(Canvas.TopProperty)) - Convert.ToDouble(len);
                     //m_Image.SetValue(Canvas.TopProperty, Convert.ToDouble(Y));
 
                     transform.position += new Vector3(0.0f, len, 0.0f);
-                    
+
                     break;
             }
 
@@ -782,9 +786,9 @@ namespace Assets.cls.Behaviours
         {
 
 
-           
+
             //AbsorbDamage();
-           // AbsorbItems();
+            // AbsorbItems();
 
 
             if (IsLocked())
@@ -819,6 +823,7 @@ namespace Assets.cls.Behaviours
                     //если мы наткнулись на булыжник, то пытаемся его двигать.
                     if (WeCanUseAxe())
                     {
+                        //этот код убран в UpdateImage, который действует только по 4 кадру анимации.
                         //If MyAction = EnumMyAction.Axe Then
                         //    'делаем, ущерб, когда взяли кирку в руки. а взять мы можем, только сказав TakeAxe подожав обновления и нанести ущерб.
                         //    DoDamage()
@@ -839,25 +844,32 @@ namespace Assets.cls.Behaviours
             //убираем, флаг о том, что была смена направления
         }
         private EnumMyAction MyAction;
-
-        private void MyActionChange(EnumMyAction action)
+        private EnumMyAction MyActionPrevValue;
+        private void MyActionChange(EnumMyAction Newaction)
         {
-            if (MyAction == action)
+            if (MyAction == Newaction && Dir==PrevDir)
             {
-                //return;
+                return;
             }
-            
-            switch (action)
+            if (MyActionPrevValue == Newaction)
+            {
+
+            }
+            else
+            {
+                animator.ResetTrigger(EnumToStringMyAction(MyActionPrevValue));
+            }
+            switch (Newaction)
             {
                 case EnumMyAction.Axe:
-                   
-                    animator.ResetTrigger("TriggerMove");
-                    animator.SetTrigger("TriggerAxeWork");
+
+                  
+                    animator.SetTrigger(EnumToStringMyAction(Newaction));
                     break;
                 case EnumMyAction.Move:
-                    animator.ResetTrigger("TriggerIdle");
+                    //animator.ResetTrigger("TriggerIdle");
                     animator.SetTrigger("TriggerMove");
-                    
+
                     break;
                 case EnumMyAction.BeDead:
                     animator.SetTrigger("TriggerDead");
@@ -873,6 +885,27 @@ namespace Assets.cls.Behaviours
 
 
 
+        }
+        public string EnumToStringMyAction(EnumMyAction i)
+        {
+            switch (i)
+            {
+                case EnumMyAction.Axe:
+                    return "TriggerAxeWork";
+                case EnumMyAction.Hands:
+                    return "TriggerMove";
+                case EnumMyAction.Move:
+                    return "TriggerMove";
+                case EnumMyAction.Idle:
+                    return "TriggerIdle";
+                case EnumMyAction.BeDead:
+                    return "TriggerDead";
+                default:
+                    break;
+
+            }
+            throw(new Exception(""));
+            return "";
         }
     }
 }
