@@ -12,6 +12,7 @@ namespace Assets.cls.Behaviours
 {
     class DefaultPlayerBehaviour : MonoBehaviour
     {
+        
         public float speed = 1f;
         public int Num = 1; //задает порядковый номер игрока.
         private MoveDirection PrevDir;
@@ -342,7 +343,9 @@ namespace Assets.cls.Behaviours
 
         public void Start()
         {
+           
             animator = this.GetComponent<Animator>();
+            
             //animator.SetInteger("MyAction", (int)EnumMyAction.Move);
             //animator.SetFloat("Dir", 0.1f);
             MyActionPrevValue = EnumMyAction.Idle;
@@ -781,12 +784,34 @@ namespace Assets.cls.Behaviours
         /// <param name="dir"></param>
         /// <remarks></remarks>
         /// 
-
+        public void DoDamage()
+        {
+          
+            //GameController.board[Xsquare1, Ysquare1].DoIncrementDamage(0, Me.CreatePlayerSeat.AxeCount);
+            GameController.board[Xsquare1, Ysquare1].DoIncrementDamage(0, 1);
+        }
         public void Move(int len, MoveDirection dir)
         {
 
+            int animationIndex;
+            int mNumAnimationFrames = 4;
+            animationIndex = ((int)(animator.GetCurrentAnimatorStateInfo(0).normalizedTime * (mNumAnimationFrames))) % mNumAnimationFrames;
+            if (animationIndex == 3)
+            {
+               // Debug.Log("4frame");
+                if (MyAction == EnumMyAction.Axe)
+                {
 
+                    DoDamage();
+                    //  MusicController.PlayByName("axe")
 
+                 }
+                if (MyAction == EnumMyAction.Hands)
+                {
+                    //DoTrackDamage(direction)
+                }
+
+            }
             //AbsorbDamage();
             // AbsorbItems();
 
@@ -847,7 +872,7 @@ namespace Assets.cls.Behaviours
         private EnumMyAction MyActionPrevValue;
         private void MyActionChange(EnumMyAction Newaction)
         {
-            if (MyAction == Newaction && Dir==PrevDir)
+            if (MyAction == Newaction && Dir == PrevDir)
             {
                 return;
             }
@@ -863,7 +888,7 @@ namespace Assets.cls.Behaviours
             {
                 case EnumMyAction.Axe:
 
-                  
+
                     animator.SetTrigger(EnumToStringMyAction(Newaction));
                     break;
                 case EnumMyAction.Move:
@@ -904,8 +929,10 @@ namespace Assets.cls.Behaviours
                     break;
 
             }
-            throw(new Exception(""));
+            throw (new Exception(""));
             return "";
         }
     }
+   
+
 }
