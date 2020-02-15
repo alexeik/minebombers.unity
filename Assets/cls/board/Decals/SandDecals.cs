@@ -72,7 +72,10 @@ namespace AssemblyCSharp
         public void Remove(int x, int y, Side s, WhoIs who)
         {
             //DONE: удаляет с канваса все images.     Вызывается когда какой то объект разрушен.
-
+            GameObject.Destroy(LeftImage);
+            GameObject.Destroy(RightImage);
+            GameObject.Destroy(UpImage);
+            GameObject.Destroy(DownImage);
             //PoleG.Children.Remove(DownImage); 
             //PoleG.Children.Remove(LeftImage);
             //PoleG.Children.Remove(RightImage);
