@@ -95,3 +95,4 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 /Assets/UnityVS/Editor/
+/Library/CurrentMaximizeLayout.dwlt
