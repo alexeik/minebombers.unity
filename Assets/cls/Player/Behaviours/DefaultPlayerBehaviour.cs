@@ -303,7 +303,7 @@ namespace Assets.cls.Behaviours
                 }
                 else if (Input.GetKey(GameController.GO.PK2.KeyList[PlayerInputActions.MoveStop]))
                 {
-                    PrevDir = Dir;
+                    PrevDir =LookTo ;
                     Dir = MoveDirection.None;
                     if (GameController.PlayerHUDs[2].CloneMode & GameController.PlayerHUDs[2].CanUseClone)
                     {
@@ -331,9 +331,12 @@ namespace Assets.cls.Behaviours
                 seccounter += Time.deltaTime;
                 if (seccounter > 0.05)
                 {
+                    MyActionPrevValue = MyAction;
                     Move(0, m_MySoul.PlayerDirection);
+                    MyActionChange(MyAction);
                     seccounter = 0;
                 }
+                
 
             }
 
@@ -349,7 +352,7 @@ namespace Assets.cls.Behaviours
             //animator.SetInteger("MyAction", (int)EnumMyAction.Move);
             //animator.SetFloat("Dir", 0.1f);
             MyActionPrevValue = EnumMyAction.Idle;
-            MyActionChange(EnumMyAction.Idle);
+            //MyActionChange(EnumMyAction.Idle);
 
         }
 
@@ -434,9 +437,10 @@ namespace Assets.cls.Behaviours
 
                 LookTo = m_MySoul.PlayerDirection;
                 //Quaternion rotation = Quaternion.AngleAxis(0.1f * Time.deltaTime, new Vector3(0.5f, 0.5f ,1f));
-                MyActionChange(EnumMyAction.Move);
+                // MyActionChange(EnumMyAction.Move);
                 //// применение вращения
                 //transform.rotation *= rotation;
+               
             }
 
         }
@@ -664,33 +668,33 @@ namespace Assets.cls.Behaviours
         }
         public void TakeAxe()
         {
-            MyActionPrevValue = MyAction;
-            MyActionChange(EnumMyAction.Axe);
+            //MyActionPrevValue = MyAction;
+           // MyActionChange(EnumMyAction.Axe);
             MyAction = EnumMyAction.Axe;
         }
         public void TakeOffAxe()
         {
-            MyActionPrevValue = MyAction;
+            //MyActionPrevValue = MyAction;
             if (MyAction == EnumMyAction.Axe)
             {
 
-                MyActionChange(EnumMyAction.Move);
+               // MyActionChange(EnumMyAction.Move);
                 MyAction = EnumMyAction.Move;
             }
         }
         private void TakeHands()
         {
-            MyActionPrevValue = MyAction;
-            MyActionChange(EnumMyAction.Hands);
+           // MyActionPrevValue = MyAction;
+           // MyActionChange(EnumMyAction.Hands);
             MyAction = EnumMyAction.Hands;
         }
         public void TakeOffHands()
         {
-            MyActionPrevValue = MyAction;
+           // MyActionPrevValue = MyAction;
             if (MyAction == EnumMyAction.Hands)
             {
 
-                MyActionChange(EnumMyAction.Move);
+               // MyActionChange(EnumMyAction.Move);
                 MyAction = EnumMyAction.Move;
             }
         }
@@ -745,7 +749,7 @@ namespace Assets.cls.Behaviours
             //}
 
             float len = 0.01f;
-
+            MyAction = EnumMyAction.Move;
             switch (dir)
             {
                 case MoveDirection.Left:
@@ -815,29 +819,40 @@ namespace Assets.cls.Behaviours
             //AbsorbDamage();
             // AbsorbItems();
 
-
+          
             if (IsLocked())
             {
                 LookUpBoard(dir);
                 LookUpNextSquare(dir);
+
+                bool bWeCanUseAxe = WeCanUseAxe();
+                bool bWeCanMoveBoulder = WeCanMoveBoulder(dir);
                 if (WeCanMove(dir))
                 {
                     UnlockMe(dir);
                     TakeOffAxe();
                     TakeOffHands();
+                    //MyActionChange(MyAction);
                     MoveMe(len, dir);
                     //DONE: косяк. если коснутbся бетона, а после этого сразу коснутся преграды, то преграда не будет разрушаться. так как все зависнет на этом месте.
                     //wecanmove не будет давать переключения,так как преграда ispassable=false. То есть мы подошли. только не взяли топор, как в случае когда подходим к разрушаемому объекту.
                     //то есть когда мы в состоянии locked то уже не проверяется возможность юзания топора.
                     //тут просто. если сменили направление то isLocked можно снять :)
                 }
+                if (!bWeCanMoveBoulder && !bWeCanUseAxe)
+                {
+                    TakeOffAxe();
+                }
             }
             else
             {
                 LookUpBoard(dir);
                 LookUpNextSquare(dir);
+                bool bWeCanUseAxe = WeCanUseAxe();
+                bool bWeCanMoveBoulder = WeCanMoveBoulder(dir);
                 if (WeCanMove(dir))
                 {
+                    //MyActionChange(MyAction);
                     MoveMe(len, dir);
                 }
                 else
@@ -846,7 +861,8 @@ namespace Assets.cls.Behaviours
                     //если дальше нельзя двигаться, то переходим в состояние замка. проверяем можно ли использовать кирку
                     //если можно, то надеваем кирку, и в следующем цикле рубим.
                     //если мы наткнулись на булыжник, то пытаемся его двигать.
-                    if (WeCanUseAxe())
+                  
+                    if (bWeCanUseAxe)
                     {
                         //этот код убран в UpdateImage, который действует только по 4 кадру анимации.
                         //If MyAction = EnumMyAction.Axe Then
@@ -854,58 +870,49 @@ namespace Assets.cls.Behaviours
                         //    DoDamage()
                         //End If
                         TakeAxe();
+                        //MyActionChange(MyAction);
                         //Diagnostics.Debug.WriteLine("Took Axe")
 
                     }
-                    if (WeCanMoveBoulder(dir))
+            
+                    if (bWeCanMoveBoulder)
                     {
                         TakeHands();
-
+                        //MyActionChange(MyAction);
                     }
+                    if (!bWeCanMoveBoulder && !bWeCanUseAxe)
+                    {
+                        TakeOffAxe();
+                    }
+               
                 }
 
             }
-            DirectionChanged = false;
+            //MyActionChange(MyAction);
+          //  DirectionChanged = false;
             //убираем, флаг о том, что была смена направления
         }
-        private EnumMyAction MyAction;
-        private EnumMyAction MyActionPrevValue;
+        private EnumMyAction MyAction= EnumMyAction.Idle;
+        private EnumMyAction MyActionPrevValue= EnumMyAction.Idle;
         private void MyActionChange(EnumMyAction Newaction)
         {
-            if (MyAction == Newaction && Dir == PrevDir)
+            if (m_MySoul==null)
             {
                 return;
             }
-            if (MyActionPrevValue == Newaction)
+            if (MyAction == MyActionPrevValue && !DirectionChanged)
             {
-
+                return;
             }
-            else
+            if (MyActionPrevValue != MyAction)
             {
                 animator.ResetTrigger(EnumToStringMyAction(MyActionPrevValue));
+               // animator.SetTrigger(EnumToStringMyAction(Newaction));
+
             }
-            switch (Newaction)
-            {
-                case EnumMyAction.Axe:
 
-
-                    animator.SetTrigger(EnumToStringMyAction(Newaction));
-                    break;
-                case EnumMyAction.Move:
-                    //animator.ResetTrigger("TriggerIdle");
-                    animator.SetTrigger("TriggerMove");
-
-                    break;
-                case EnumMyAction.BeDead:
-                    animator.SetTrigger("TriggerDead");
-                    break;
-                case EnumMyAction.Idle:
-                    animator.SetTrigger("TriggerIdle");
-                    break;
-                default:
-                    break;
-            }
-            animator.SetFloat("MyAction", (float)Dir);
+            animator.SetTrigger(EnumToStringMyAction(MyAction));
+            animator.SetFloat("MyAction", (float)LookTo);
 
 
 
