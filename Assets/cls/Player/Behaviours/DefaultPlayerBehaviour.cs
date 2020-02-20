@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Assets.cls.Behaviours
+namespace Assets.cls.Player.Behaviours
 {
-    class DefaultPlayerBehaviour : MonoBehaviour
+    public class DefaultPlayerBehaviour : MonoBehaviour
     {
         
         public float speed = 1f;
@@ -39,6 +39,7 @@ namespace Assets.cls.Behaviours
         private Animator animator;
         private bool f = false;
         private MoveDirection m_locked_dir;
+        private InputComponent inputComponent = new InputComponent();
 
         public void Update()
         {
@@ -47,7 +48,7 @@ namespace Assets.cls.Behaviours
 
             X = transform.position.x;
             Y = transform.position.y;
-
+            inputComponent.Update(this);
 
 
             //Quaternion rotation = Quaternion.AngleAxis(10f * Time.deltaTime, new Vector3( 1f, 1f, -0.5f));
@@ -62,262 +63,7 @@ namespace Assets.cls.Behaviours
             //}
             //return;
 
-            if (Input.anyKey)
-            {
-                if (Input.GetKey(GameController.GO.PK1.KeyList[PlayerInputActions.Special]))
-                {
-                    GameController.PlayerHUDs[1].CloneMode = !GameController.PlayerHUDs[1].CloneMode;
-                }
-                if (Input.GetKey(GameController.GO.PK2.KeyList[PlayerInputActions.Special]))
-                {
-                    GameController.PlayerHUDs[2].CloneMode = !GameController.PlayerHUDs[2].CloneMode;
-                }
-
-
-
-
-
-
-
-                if (Input.GetKey(GameController.GO.PK1.KeyList[PlayerInputActions.ChangeItem]))
-                {
-                    if (GameController.PlayerHUDs[1].CloneMode & GameController.PlayerHUDs[1].CanUseClone)
-                    {
-                        //тут пустота, так как для клона нельзя юзать рюкзак
-                    }
-                    else
-                    {
-                        GameController.PlayerHUDs[1].NextItem();
-                    }
-
-                }
-                else if (Input.GetKey(GameController.GO.PK1.KeyList[PlayerInputActions.MoveDown]))
-                {
-                    PrevDir = Dir;
-                    Dir = MoveDirection.Down;
-
-                    if (GameController.PlayerHUDs[1].CloneMode & GameController.PlayerHUDs[1].CanUseClone)
-                    {
-                        InsertSoul(new PlayerSoul(1, Dir));
-
-                    }
-                    else
-                    {
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-
-
-
-                }
-
-                else if (Input.GetKey(GameController.GO.PK1.KeyList[PlayerInputActions.MoveLeft]))
-                {
-                    PrevDir = Dir;
-                    Dir = MoveDirection.Left;
-                    if (GameController.PlayerHUDs[1].CloneMode & GameController.PlayerHUDs[1].CanUseClone)
-                    {
-                        //тут пустота, так как для клона нельзя юзать рюкзак
-
-                        InsertSoul(new PlayerSoul(1, Dir));
-
-                    }
-                    else
-                    {
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-
-                }
-
-                else if (Input.GetKey(GameController.GO.PK1.KeyList[PlayerInputActions.MoveRight]))
-                {
-                    PrevDir = Dir;
-                    Dir = MoveDirection.Right;
-                    if (GameController.PlayerHUDs[1].CloneMode & GameController.PlayerHUDs[1].CanUseClone)
-                    {
-                        //тут пустота, так как для клона нельзя юзать рюкзак
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-                    else
-                    {
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-
-                }
-
-                else if (Input.GetKey(GameController.GO.PK1.KeyList[PlayerInputActions.MoveTop]))
-                {
-                    PrevDir = Dir;
-                    Dir = MoveDirection.Top;
-                    if (GameController.PlayerHUDs[1].CloneMode & GameController.PlayerHUDs[1].CanUseClone)
-                    {
-                        //тут пустота, так как для клона нельзя юзать рюкзак
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-                    else
-                    {
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-
-                }
-
-                else if (Input.GetKey(GameController.GO.PK1.KeyList[PlayerInputActions.UseItem]))
-                {
-                    if (GameController.PlayerHUDs[1].CloneMode & GameController.PlayerHUDs[1].CanUseClone)
-                    {
-                        //тут пустота, так как для клона нельзя юзать рюкзак
-                    }
-                    else
-                    {
-                        GameController.PlayerHUDs[1].UseItem();
-                    }
-
-                }
-                else if (Input.GetKey(GameController.GO.PK1.KeyList[PlayerInputActions.UseRemote]))
-                {
-                    if (GameController.PlayerHUDs[1].CloneMode & GameController.PlayerHUDs[1].CanUseClone)
-                    {
-                        //тут пустота, так как для клона нельзя юзать рюкзак
-                    }
-                    else
-                    {
-                        GameController.PlayerHUDs[1].UseRemoteItem();
-                    }
-
-                }
-
-                else if (Input.GetKey(GameController.GO.PK1.KeyList[PlayerInputActions.MoveStop]))
-                {
-                    PrevDir = Dir;
-                    Dir = MoveDirection.None;
-                    if (GameController.PlayerHUDs[1].CloneMode & GameController.PlayerHUDs[1].CanUseClone)
-                    {
-                        //тут пустота, так как для клона нельзя юзать рюкзак
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-                    else
-                    {
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-
-                }
-
-                else if (Input.GetKey(GameController.GO.PK2.KeyList[PlayerInputActions.ChangeItem]))
-                {
-                    if (GameController.PlayerHUDs[2].CloneMode & GameController.PlayerHUDs[2].CanUseClone)
-                    {
-                        //тут пустота, так как для клона нельзя юзать рюкзак
-
-                    }
-                    else
-                    {
-                        GameController.PlayerHUDs[2].NextItem();
-                    }
-
-                }
-
-                else if (Input.GetKey(GameController.GO.PK2.KeyList[PlayerInputActions.MoveDown]))
-                {
-                    PrevDir = Dir;
-                    Dir = MoveDirection.Down;
-                    if (GameController.PlayerHUDs[2].CloneMode & GameController.PlayerHUDs[2].CanUseClone)
-                    {
-                        //тут пустота, так как для клона нельзя юзать рюкзак
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-                    else
-                    {
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-
-                }
-
-                else if (Input.GetKey(GameController.GO.PK2.KeyList[PlayerInputActions.MoveLeft]))
-                {
-                    PrevDir = Dir;
-                    Dir = MoveDirection.Left;
-                    if (GameController.PlayerHUDs[2].CloneMode & GameController.PlayerHUDs[2].CanUseClone)
-                    {
-                        //тут пустота, так как для клона нельзя юзать рюкзак
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-                    else
-                    {
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-
-                }
-                else if (Input.GetKey(GameController.GO.PK2.KeyList[PlayerInputActions.MoveRight]))
-                {
-                    PrevDir = Dir;
-                    Dir = MoveDirection.Right;
-                    if (GameController.PlayerHUDs[2].CloneMode & GameController.PlayerHUDs[2].CanUseClone)
-                    {
-                        //тут пустота, так как для клона нельзя юзать рюкзак
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-                    else
-                    {
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-                }
-                else if (Input.GetKey(GameController.GO.PK2.KeyList[PlayerInputActions.MoveTop]))
-                {
-                    PrevDir = Dir;
-                    Dir = MoveDirection.Top;
-                    if (GameController.PlayerHUDs[2].CloneMode & GameController.PlayerHUDs[2].CanUseClone)
-                    {
-                        //тут пустота, так как для клона нельзя юзать рюкзак
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-                    else
-                    {
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-
-                }
-                else if (Input.GetKey(GameController.GO.PK2.KeyList[PlayerInputActions.UseItem]))
-                {
-                    if (GameController.PlayerHUDs[2].CloneMode & GameController.PlayerHUDs[2].CanUseClone)
-                    {
-                        //тут пустота, так как для клона нельзя юзать рюкзак
-
-                    }
-                    else
-                    {
-                        GameController.PlayerHUDs[2].UseItem();
-                    }
-
-                }
-                else if (Input.GetKey(GameController.GO.PK2.KeyList[PlayerInputActions.UseRemote]))
-                {
-                    if (GameController.PlayerHUDs[2].CloneMode & GameController.PlayerHUDs[2].CanUseClone)
-                    {
-                        //тут пустота, так как для клона нельзя юзать рюкзак
-
-                    }
-                    else
-                    {
-                        GameController.PlayerHUDs[2].UseRemoteItem();
-                    }
-
-                }
-                else if (Input.GetKey(GameController.GO.PK2.KeyList[PlayerInputActions.MoveStop]))
-                {
-                    PrevDir =LookTo ;
-                    Dir = MoveDirection.None;
-                    if (GameController.PlayerHUDs[2].CloneMode & GameController.PlayerHUDs[2].CanUseClone)
-                    {
-                        //тут пустота, так как для клона нельзя юзать рюкзак
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-                    else
-                    {
-                        InsertSoul(new PlayerSoul(1, Dir));
-                    }
-
-                }
-
-            }
+        
             if ((NextSoul == null))
             {
 
@@ -379,6 +125,9 @@ namespace Assets.cls.Behaviours
         /// <remarks></remarks>
         public void InsertSoul(PlayerSoul s)
         {
+            PrevDir = Dir;
+            Dir = s.PlayerDirection;
+
             if (!CheckSoul(s))
             {
                 s = null;
