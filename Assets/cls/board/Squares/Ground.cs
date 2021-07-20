@@ -10,7 +10,6 @@
 using System;
 using UnityEngine;
 using Assets.cls;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
