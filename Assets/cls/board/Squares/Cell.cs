@@ -10,8 +10,6 @@ namespace AssemblyCSharp
 {
     public class Cell : ISquareDiv
     {
-
-
         protected Dictionary<int, Sprite> StateList;
         private int State;
         private Sprite _image;
